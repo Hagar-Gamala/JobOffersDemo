@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Job Offers</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="~/Home" class="navbar-brand">
+                    <img src="~/Images/logo.png" class="logo-size" />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                    <li>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                        {
+                            <input type="text" name="searchName" id="searchName" placeholder="Search Here...." />
+                        }
+                    </li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    
+    <div class="container body-content">
+        <div class="row" style="min-height:550px;">
+
+            @RenderBody()
+        </div>
+    </div>
+        
+        
+        <footer class="myfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <i class="glyphicon glyphicon-question-sign"></i>
+                            <span class="foothead">Who are we?</span>
+                            <p id="we">We're helping employers and job seekers from UAE, Qatar and other gulf countries find their right match through our intelligent real-time recommendations and around the clock support.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="glyphicon glyphicon-globe"></i>
+                            <span class="foothead">Careers</span>
+                            <ul>
+                                <li><a href="#">Jobs setion Public</a></li>
+                                <li><a href="#">Jobs setion Private</a></li>
+                                <li><a href="#">Jobs outside the country</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <span class="foothead">Contact Us</span>
+                            <ul>
+                                <li><a href="https://www.facebook.com/wuzzuf/">Facebook</a></li>
+                                <li><a href="https://twitter.com/wuzzuf">Twitter</a></li>
+                                <li><a href="https://www.youtube.com/wuzzuf/">Youtube</a></li>
+                                <li>@Html.ActionLink("Email", "Contact", "Home")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="subfooter">
+                    <span>All rights reserved  @DateTime.Now.Year &copy; Job Offers</span>
+                </div>
+            </footer>
+        
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<JobOffers.Models.Category>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<div class="jumbotron alert alert-info">
+    <h2>Welcome my dear visitor</h2>
+    <p>Welcome to the search space for jobs of different types You can post a job that you are a publisher and you can apply for the job if you are looking for a job.</p>
+    <p><a href="~/Home/About" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="panel panel-info">
+        <div class="panel-heading"><h1>@Html.DisplayFor(modelItem => item.CategoryName)</h1></div>
+
+        <div class="row panel-body">
+            <h5>@Html.DisplayFor(modelItem => item.CategoryDessription)</h5>
+            @foreach (var subItem in item.Jobs)
+            {
+
+                <div class="col-md-3 thumbnail" style="margin-left:20px;margin-bottom:30px;min-height:380px;">
+                    <img src="~/Uploads/@subItem.JobImage" />
+                    <h3>@Html.DisplayFor(modelItem => subItem.JobTitle)</h3>
+                    <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subItem.JobContent).ToString()))</h5>
+                    @Html.ActionLink("Details", "Details", new { JobId = subItem.Id }, new { @class = "btn btn-default" })
+                </div>
+
+            }
+        </div>
+    </div>
+}
